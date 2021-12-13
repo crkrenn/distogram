@@ -4,6 +4,11 @@ from pytest import approx
 import distogram
 import pytest
 
+try:
+    from icecream import ic
+except ImportError:  # Graceful fallback if IceCream isn't installed.
+    ic = lambda *a: None if not a else (a[0] if len(a) == 1 else a)  # noqa
+
 
 def test_histogram():
     normal = [random.normalvariate(0.0, 1.0) for _ in range(10000)]
@@ -49,7 +54,10 @@ def test_format_histogram():
         h = distogram.update(h, i)
 
     hist = distogram.histogram(h, bin_count=bin_count)
-    assert(len(hist[1]) == len(hist[0]))
+    print(hist)
+    # assert(len(hist[1]) == len(hist[0]))
     hist = distogram.histogram(h, bin_count=bin_count, data_type="numpy")
+    print(hist)
     assert(len(hist[1]) == len(hist[0]) + 1)
+    assert False
 
