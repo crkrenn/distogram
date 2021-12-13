@@ -54,10 +54,7 @@ def test_format_histogram():
         h = distogram.update(h, i)
 
     hist = distogram.histogram(h, bin_count=bin_count)
-    print(hist)
-    # assert(len(hist[1]) == len(hist[0]))
+    assert(len(hist[1]) == len(hist[0]))
     hist = distogram.histogram(h, bin_count=bin_count, data_type="numpy")
-    print(hist)
     assert(len(hist[1]) == len(hist[0]) + 1)
-    assert False
 

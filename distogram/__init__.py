@@ -576,7 +576,7 @@ def histogram(
         raise ValueError(
             f"data_type {data_type} is not a member of {allowed_data_types}")
     bin_bounds = _linspace(h.min, h.max, num=(bin_count + 2))
-    counts = [count_at(h, e) for e in bin_bounds[1:-1]]
+    counts = [count_at(h, e) for e in bin_bounds]
     if data_type == "distogram":
         u = [
             ((b_new + b_last) / 2, new - last)
